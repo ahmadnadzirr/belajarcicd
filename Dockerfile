@@ -63,8 +63,10 @@ RUN { \
 RUN a2enmod rewrite expires
 
 
-VOLUME /var/www/html
+VOLUME ./wp-content:/var/www/html/wp-content
 
+ENV WORDPRESS_DB_HOST: db:3306
+ENV WORDPRESS_DB_PASSWORD: root
 ENV WORDPRESS_VERSION 5.2.2
 ENV WORDPRESS_SHA1 3605bcbe9ea48d714efa59b0eb2d251657e7d5b0
 
