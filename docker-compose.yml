@@ -12,17 +12,6 @@ services:
        MYSQL_PASSWORD: root
     networks:
        - back
-  webserver:
-    depends_on:
-       - web
-    image: httpd:2.4
-    restart: always
-    ports:
-      - 8000:80
-    volumes:
-      - /path/to/app:/app
-    networks:
-      - back
   phpmyadmin:
     depends_on:
        - db
