@@ -77,12 +77,11 @@ RUN set -ex; \
 # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
         tar -xzf wordpress.tar.gz -C /usr/src/; \
         rm wordpress.tar.gz; \
-        chown -R www-data:www-data /usr/src/wordpress
+        chown -R www-data:www-data /var/www/html/
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ["chmod", "+x", "/usr/local/bin/docker-entrypoint.sh"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-RUN useradd -m myuser
-USER myuser
+CMD ["apache2-foreground"]
 

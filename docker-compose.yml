@@ -30,10 +30,14 @@ services:
        - db
     restart: always
     ports:
-       - 8002:80
+       - 8001:80
+    volumes:
+      - ./wp-app:/var/www/html
+      
     networks:
        - back
 networks:
   back:
 volumes:
   db_data:  
+
