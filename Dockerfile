@@ -63,7 +63,7 @@ RUN { \
 RUN a2enmod rewrite expires
 
 
-VOLUME /var/www/html/belajarcicd/wp-content
+
 ENV WORDPRESS_DB_NAME: wordpress
 ENV WORDPRESS_DB_USERNAME: root
 ENV WORDPRESS_DB_HOST: db:3306
@@ -78,10 +78,12 @@ RUN set -ex; \
         tar -xzf wordpress.tar.gz -C /usr/src/; \
         rm wordpress.tar.gz; \
         chown -R www-data:www-data /var/www/html/
+       
 
+VOLUME /var/www/html/belajarcicd/wp-content
+#COPY src /var/www/html
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ["chmod", "+x", "/usr/local/bin/docker-entrypoint.sh"]
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
 
